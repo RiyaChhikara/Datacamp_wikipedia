@@ -26,3 +26,15 @@ print(df.loc['Anne Hathaway'])
 print(df.loc['Denzel Washington'])
 
 # Notice that for both actors, the NMF feature 3 has by far the highest value. This means that both articles are reconstructed using mainly the 3rd NMF component.
+
+# Create a DataFrame: components_df
+components_df = pd.DataFrame(model.components_,columns=words)
+
+# Print the shape of the DataFrame
+print(components_df.shape)
+
+# Select row 3: component
+component = components_df.iloc[3]
+
+# Print result of nlargest
+print(component.nlargest())
