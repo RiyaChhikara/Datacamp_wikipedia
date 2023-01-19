@@ -1,0 +1,32 @@
+UNSUPERVISED LEARNING IN PYTHON
+Non-negative matrix factorization(NMF)
+In this code, I apply NMF using the tf-idf word-frequency array of Wikipedia articles given as a csr matrix articles. 
+The presence of words in each document are measured using"tf-idf", where "tf" is the frequency of word in document and "idf"reduces infuence of frequent words.
+
+# Import NMF
+from sklearn.decomposition import NMF
+
+# Create an NMF instance: model
+model = NMF(n_components=6)
+
+# Fit the model to articles
+model.fit(articles)
+
+# Transform the articles: nmf_features
+nmf_features = model.transform(articles)
+
+# Print the NMF features
+print(nmf_features.round(2))
+# Import pandas
+import pandas as pd
+
+# Create a pandas DataFrame: df
+df = pd.DataFrame(nmf_features,index=titles)
+
+# Print the row for 'Anne Hathaway'
+print(df.loc['Anne Hathaway'])
+
+# Print the row for 'Denzel Washington'
+print(df.loc['Denzel Washington'])
+
+# Notice that for both actors, the NMF feature 3 has by far the highest value. This means that both articles are reconstructed using mainly the 3rd NMF component.
